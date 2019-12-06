@@ -1,0 +1,34 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!DOCTYPE mapper 
+PUBLIC "-//mybatis.org//DTD mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.soumyasourabha.dao.employeeMapper">
+
+	<resultMap type="employee" id="result">
+		<id property="id" column="id"/>
+		<result property="name" column="name"/>
+		<result property="domain" column="domain"/>
+		<result property="salary" column="salary"/>
+	</resultMap>
+	
+	
+	<select id="getAllEmployees" resultType="employee" resultMap="result">
+		SELECT * FROM employee 
+	</select>
+	<insert id="insertEmployee" parameterType="employee" keyProperty="id" useGeneratedKeys="true">
+		INSERT INTO employee (name,domain,salary) VALUES (#{name},#{domain},#{salary})
+	</insert>
+	
+	<delete id="deleteEmployee" parameterType="int">
+		DELETE FROM employee WHERE id = #{empid}
+	</delete>
+	
+	<select id="getEmployee" parameterType="int" resultType="employee" resultMap="result">
+		SELECT * FROM employee where id = #{empid}
+	</select>
+	
+	<update id="updateEmployee" parameterType="employee">
+		UPDATE employee SET name = #{name},domain = #{domain},salary = #{salary} WHERE id = #{id}
+	</update>
+</mapper>
