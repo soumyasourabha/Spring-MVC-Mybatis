@@ -35,12 +35,10 @@ public class employeeController {
 	}
 	@RequestMapping("/save")
 	public String saveEmployee(@ModelAttribute("employee") employee emp) {
-		if(emp.getId() == null) {
-			mapper.saveEmployee(emp);
-		}else {
-			mapper.updateEmployee(emp);
-		}		
-		return "redirect:/employees"; //to redirect the /employees
+		
+		mapper.saveEmployee(emp);
+			
+		return "redirect:/employees"; 	//to redirect the /employees
 	}
 	
 	@RequestMapping("/deleteEmployee")
